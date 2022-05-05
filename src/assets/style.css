@@ -1,6 +1,9 @@
 :root{
-    --background-sign: #FFFFFF;
-    --logo: #1D6BA5;
+    --background: #9257BE;
+    --logo: #FFFFFF;
+
+
+
     --placeholder: #DBDBDB;
     --input-border: #D5D5D5;
     --button: #FFFFFF;
@@ -28,7 +31,7 @@
 }
 
 .root{
-    font-family: 'Lexend Deca';
+    font-family: 'Raleway';
 }
 
 input{

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 
 import axios from "axios";
-// import styledComponents from "styled-components";
+import styledComponents from "styled-components";
 
 export default function SignInScreen() {
     const URL = "http://localhost:5000";
@@ -33,7 +33,7 @@ export default function SignInScreen() {
 
 
     return (
-        <section>
+        <Section>
             <h1>MyWallet</h1>
             <form onSubmit={signIn}>
                 <input
@@ -58,6 +58,26 @@ export default function SignInScreen() {
                 </button>
             </form>
             <Link to={"/signup"} >Primeira vez? Cadastre-se!</Link>
-        </section>
+        </Section>
     );
 }
+
+const Section = styledComponents.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background);
+
+    h1{
+        font-family: "Saira Stencil One";
+        font-size: 32px;
+        color: var(--logo);
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+`
