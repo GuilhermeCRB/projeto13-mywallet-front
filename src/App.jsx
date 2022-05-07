@@ -5,7 +5,7 @@ import UserConntext from "./contexts/UserContext";
 
 import SignInScreen from "./components/SignInScreen";
 import SignUpScreen from "./components/SignUpScreen";
-import Walletcreen from "./components/WalletScreen";
+import WalletScreen from "./components/WalletScreen";
 import AddEntryScreen from "./components/AddEntryScreen";
 
 
@@ -18,7 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<SignInScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="/wallet" element={<Walletcreen />} />
+          <Route path="/wallet" element={<WalletScreen />} />
           <Route path="/add-entry" element={<AddEntryScreen />} />
         </Routes>
       </BrowserRouter>

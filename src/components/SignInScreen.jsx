@@ -8,7 +8,7 @@ import axios from "axios";
 import styledComponents from "styled-components";
 
 export default function SignInScreen() {
-    const URL = "http://localhost:5000";
+    const URL = "http://localhost:5511/sign-in";
     const [data, setData] = useState({ email: "", password: "" });
     const [disable, setDisable] = useState(false);
     const { setUser } = useContext(UserContext);
@@ -22,12 +22,12 @@ export default function SignInScreen() {
     }
 
     function warnError(error) {
-        alert(error); //TODO: back-end should send error message and status
+        alert(error.response.data);
         setDisable(false);
     }
 
     function saveUserInformation(response) {
-        setUser(response.data); //TODO: back-end should give as response {user: userName}
+        setUser(response.data);
         navigate("/wallet");
     }
 
