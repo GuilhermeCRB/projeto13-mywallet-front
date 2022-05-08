@@ -1,17 +1,21 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styledComponents from "styled-components";
 
 import UserContext from "../contexts/UserContext";
+import InputTypeContext from "../contexts/InputTypeContext";
 
 export default function WalletScreen() {
 
+    const { setInputType } = useContext(InputTypeContext);
     const { user } = useContext(UserContext);
     const URL = `http://localhost:5511/records/${user.userId}`;
     const config = {
         headers: { "Authorization": `Bearer ${user.token}` }
     }
     const [inputList, setInputList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const promise = axios.get(URL, config);
@@ -23,11 +27,15 @@ export default function WalletScreen() {
     }
 
     function renderInputs(response) {
-        console.log(response.data)
         setInputList(response.data);
     }
 
-    console.log(inputList)
+    function addInput(type){
+        console.log(type)
+        setInputType(type);
+        navigate("/add-input");
+    }
+
     return (
         <section>
             <header>
@@ -50,11 +58,11 @@ export default function WalletScreen() {
                 }
             </ul>
             <div>
-                <button>
+                <button onClick={() => addInput("entrada")}>
                     <p>+</p>
                     <p>Nova entrada</p>
                 </button>
-                <button>
+                <button onClick={() => addInput("saída")}>
                     <p>-</p>
                     <p>Nova saída</p>
                 </button>
