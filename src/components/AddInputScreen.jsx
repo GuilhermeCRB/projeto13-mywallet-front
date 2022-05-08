@@ -3,6 +3,7 @@ import axios from "axios";
 
 import UserContext from "../contexts/UserContext";
 import InputTypeContext from "../contexts/InputTypeContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AddInputScreen() {
 
@@ -14,11 +15,18 @@ export default function AddInputScreen() {
     }
     const [disable, setDisable] = useState(false);
     const [input, setInput] = useState({ type: inputType, description: "", value: "" });
+    const navigate = useNavigate();
 
     function postInput(e) {
         e.preventDefault();
-        console.log("post sent")
+        const promise = axios.post(URL, input, config);
+        promise.then(() => navigate("/wallet")); promise.catch(warnError);
+        setDisable(true);
+    }
 
+    function warnError(error) {
+        alert(error.response.data);
+        setDisable(false);
     }
 
     return (
