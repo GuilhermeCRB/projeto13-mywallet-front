@@ -17,6 +17,12 @@ export default function WalletScreen() {
     const [inputList, setInputList] = useState([]);
     const navigate = useNavigate();
 
+    let total = 0;
+    inputList?.forEach(input => {
+        const { value } = input;
+        total += parseFloat(value.replace(",", "."));
+    });
+
     useEffect(() => {
         const promise = axios.get(URL, config);
         promise.then(renderInputs); promise.catch(warnError);
@@ -57,6 +63,10 @@ export default function WalletScreen() {
                         );
                     })
                 }
+                <div className="total">
+                    <p className="total-title">SALDO</p>
+                    <p className="total-value">{total.toFixed(2).toString().replace(".", ",")}</p>
+                </div>
             </ul>
             <div className="buttons">
                 <button onClick={() => addInput("entrada")}>
@@ -95,6 +105,7 @@ const Section = styledComponents.section`
     }
 
     ul{
+        overflow-y: scroll;
         width: 326px;
         height: 446px;
         padding: 23px 15px;
@@ -112,6 +123,25 @@ const Section = styledComponents.section`
                 margin-right: 2px;
                 color: var(--date);
             }
+        }
+
+        .total{
+            position: fixed;
+            z-index: 1;
+            bottom: 120px;
+            display: flex;
+            justify-content: space-between;
+            width: 296px;
+            height: 30px;
+            background-color: white;
+        }
+
+        .total-title{
+            font-weight: bold;
+        }
+
+        .total-value{
+            right: 100px;
         }
     }
 
