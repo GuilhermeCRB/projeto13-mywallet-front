@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import styledComponents from "styled-components";
 
 import UserContext from "../contexts/UserContext";
 import InputTypeContext from "../contexts/InputTypeContext";
-import { useNavigate } from "react-router-dom";
 
 export default function AddInputScreen() {
 
@@ -30,7 +31,7 @@ export default function AddInputScreen() {
     }
 
     return (
-        <section>
+        <Section>
             <header>{`Nova ${inputType}`}</header>
             <form onSubmit={postInput}>
                 <input
@@ -54,6 +55,51 @@ export default function AddInputScreen() {
                     <p>{`Salvar ${inputType}`}</p>
                 </button>
             </form>
-        </section>
+        </Section>
     );
 }
+
+const Section = styledComponents.section`
+    height: 100vh;  
+    background-color: var(--background);
+    padding-top: 25px;
+
+    header{
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 0 25px 25px;
+        color: var(--logo);
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        margin: 0 25px 0 25px;
+
+        input{
+            font-size: 20px;
+            height: 58px;
+            margin-bottom: 13px;
+            padding: 0 15px; 
+            border-radius: 5px;
+            border: none;
+            color: black;
+        }
+
+        input::placeholder{
+            color: black;
+        }
+
+        button{
+            font-size: 20px;
+            font-weight: bold;
+            height: 46px;
+            margin-bottom: 36px; 
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: var(--button);
+        }
+
+    }
+`

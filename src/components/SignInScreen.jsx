@@ -47,7 +47,7 @@ export default function SignInScreen() {
                 <input
                     value={data.password}
                     type="password"
-                    placeholder="senha"
+                    placeholder="Senha"
                     onChange={(e) => { setData({ ...data, password: e.target.value }) }}
                     disabled={disable}
                     required
@@ -73,11 +73,45 @@ const Section = styledComponents.section`
     h1{
         font-family: "Saira Stencil One";
         font-size: 32px;
+        margin-bottom: 24px;
         color: var(--logo);
     }
 
     form{
         display: flex;
         flex-direction: column;
+
+        input{
+            font-size: 20px;
+            width: 326px;
+            height: 58px;
+            margin-bottom: 13px;
+            padding: 0 15px; 
+            border-radius: 5px;
+            border: none;
+            color: black;
+        }
+
+        input::placeholder{
+            color: black;
+        }
+
+        button{
+            font-size: 20px;
+            font-weight: bold;
+            width: 326px;
+            height: 46px;
+            margin-bottom: 36px; 
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: var(--button);
+        }
+
+    }
+
+    a{
+        font-size: 15px;
+        color: white;
     }
 `

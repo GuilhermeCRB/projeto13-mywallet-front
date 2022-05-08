@@ -1,12 +1,13 @@
 :root{
     --background: #9257BE;
     --logo: #FFFFFF;
+    --button: #A328D6;
+    --date: #C6C6C6;
 
 
 
     --placeholder: #DBDBDB;
     --input-border: #D5D5D5;
-    --button: #FFFFFF;
     --background-button: #52B5FB;
     --link: #52B5FB;
     --header: #1D6BA5;
@@ -35,9 +36,13 @@
 }
 
 input{
-    font-family: 'Lexend Deca';
+    font-family: 'Raleway';
 }
 
 button{
-    font-family: 'Lexend Deca';
+    font-family: 'Raleway';
+}
+
+a{
+    text-decoration: none;
 }

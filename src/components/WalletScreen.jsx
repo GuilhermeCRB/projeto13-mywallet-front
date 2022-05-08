@@ -8,7 +8,7 @@ import InputTypeContext from "../contexts/InputTypeContext";
 
 export default function WalletScreen() {
 
-    const { setInputType } = useContext(InputTypeContext);
+    const { inputType, setInputType } = useContext(InputTypeContext);
     const { user } = useContext(UserContext);
     const URL = `http://localhost:5511/records/${user.userId}`;
     const config = {
@@ -30,17 +30,19 @@ export default function WalletScreen() {
         setInputList(response.data);
     }
 
-    function addInput(type){
+    function addInput(type) {
         console.log(type)
         setInputType(type);
         navigate("/add-input");
     }
 
     return (
-        <section>
+        <Section>
             <header>
                 <p>{`Olá, ${user.userName}`}</p>
-                <ion-icon name="exit-outline"></ion-icon>
+                <div className="icon" onClick={() => navigate("/")}>
+                    <ion-icon name="exit-outline"></ion-icon>
+                </div>
             </header>
             <ul>
                 {inputList.length === 0 ?
@@ -49,24 +51,109 @@ export default function WalletScreen() {
                     inputList.map((input) => {
                         return (
                             <li key={input._id} >
-                                <p>{input.date}</p>
-                                <p>{input.description}</p>
+                                <p><span>{input.date}</span> {input.description}</p>
                                 <p>{input.value}</p>
                             </li>
                         );
                     })
                 }
             </ul>
-            <div>
+            <div className="buttons">
                 <button onClick={() => addInput("entrada")}>
-                    <p>+</p>
+                    <div className="button-icon">+</div>
                     <p>Nova entrada</p>
                 </button>
                 <button onClick={() => addInput("saída")}>
-                    <p>-</p>
+                    <div className="button-icon button-icon-m">-</div>
                     <p>Nova saída</p>
                 </button>
             </div>
-        </section>
+        </Section>
     );
 }
+
+const Section = styledComponents.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: var(--background);
+
+    header{
+        font-size: 26px;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        width: 326px;
+        margin-bottom: 20px;
+        color: white;
+
+        .icon{
+            font-size: 32px;    
+        }
+    }
+
+    ul{
+        width: 326px;
+        height: 446px;
+        padding: 23px 15px;
+        margin-bottom: 13px;
+        border-radius: 5px;
+        background-color: white;
+
+        li{
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            span{
+                margin-right: 2px;
+                color: var(--date);
+            }
+        }
+    }
+
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+        width: 326px;
+    }
+
+    button{
+        display: flex;
+        flex-direction: column;
+        font-size: 17px;
+        font-weight: bold;
+        width: 31vw;
+        height: 15vh;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        background-color: var(--button);
+
+        .button-icon{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            width: 20px;
+            height: 20px;
+            font-weight: normal;
+            border: solid 2px white;
+            border-radius: 10px;
+        }
+
+        .button-icon-m{
+            padding-bottom: 4px;
+        }
+
+        p{
+            text-align: left;
+            width: 50%;
+            margin-top: 3vh;
+        }
+    }
+`
