@@ -126,6 +126,9 @@ const Section = styledComponents.section`
         align-items: center;
         justify-content: center;
         overflow-y: scroll;
+        ::-webkit-scrollbar {
+            display: none;
+          }
         overflow-x: hidden;
         width: 326px;
         height: 446px;
@@ -186,13 +189,13 @@ const Section = styledComponents.section`
 `
 
 const Total = styledComponents.div`
-    position: sitcky;
+    position: absolute;
     z-index: 1;
     bottom: 0px;
     display: flex;
     justify-content: space-between;
     width: 296px;
-    height: 25px;
+    height: 30px;
     background-color: white;
 
     .total-title{
