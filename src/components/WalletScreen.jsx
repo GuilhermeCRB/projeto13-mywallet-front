@@ -52,7 +52,7 @@ export default function WalletScreen() {
     }
 
     return (
-        <Section>
+        <Section inputList={inputList}>
             <header>
                 <p>{`Olá, ${user.userName}`}</p>
                 <div className="icon" onClick={() => navigate("/")}>
@@ -119,6 +119,9 @@ const Section = styledComponents.section`
     }
 
     ul{
+        display: ${({inputList}) => inputList.length === 0 ? "flex":""};
+        align-items: center;
+        justify-content: center;
         overflow-y: scroll;
         width: 326px;
         height: 446px;
@@ -131,7 +134,7 @@ const Section = styledComponents.section`
             font-size: 20px;
             text-align: center;
             width: 180px;
-            margin: auto;
+            // margin: auto;
             color: var(--no-input-p);
         }
     }
