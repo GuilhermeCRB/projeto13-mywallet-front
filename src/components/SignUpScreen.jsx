@@ -6,7 +6,7 @@ import axios from "axios";
 import styledComponents from "styled-components";
 
 export default function SignUpScreen() {
-    const URL = "http://localhost:5511/sign-up";
+    const URL = "https://mywallet-gui.herokuapp.com/sign-up";
     const [data, setData] = useState({
         name: "", email: "", password: "", repeat_password: ""
     });
@@ -15,8 +15,6 @@ export default function SignUpScreen() {
 
     function signUp(e) {
         e.preventDefault();
-        console.log(data)
-
         const promise = axios.post(URL, data);
         promise.then(() => Navigate("/")); promise.catch(warnError);
         setDisable(true);

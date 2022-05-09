@@ -10,7 +10,7 @@ export default function AddInputScreen() {
 
     const { inputType } = useContext(InputTypeContext)
     const { user } = useContext(UserContext);
-    const URL = `http://localhost:5511/add-records/${user.userId}`;
+    const URL = `https://mywallet-gui.herokuapp.com/add-records/${user.userId}`;
     const config = {
         headers: { "Authorization": `Bearer ${user.token}` }
     }

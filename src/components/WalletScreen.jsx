@@ -12,15 +12,13 @@ export default function WalletScreen() {
 
     const { inputType, setInputType } = useContext(InputTypeContext);
     const { user } = useContext(UserContext);
-    const URL = `http://localhost:5511/records/${user.userId}`;
+    const URL = `https://mywallet-gui.herokuapp.com/records/${user.userId}`;
     const config = {
         headers: { "Authorization": `Bearer ${user.token}` }
     }
     const [inputList, setInputList] = useState([]);
     const navigate = useNavigate();
     let total = 0;
-
-    console.log(total)
 
     useEffect(() => {
         const promise = axios.get(URL, config);

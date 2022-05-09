@@ -8,7 +8,7 @@ import axios from "axios";
 import styledComponents from "styled-components";
 
 export default function SignInScreen() {
-    const URL = "http://localhost:5511/sign-in";
+    const URL = "https://mywallet-gui.herokuapp.com/sign-in";
     const [data, setData] = useState({ email: "", password: "" });
     const [disable, setDisable] = useState(false);
     const { setUser } = useContext(UserContext);

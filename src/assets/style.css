@@ -6,28 +6,6 @@
     --no-input-p: #868686;
     --positive: #03AC00;
     --negative: #C70000;
-
-
-
-    --placeholder: #DBDBDB;
-    --input-border: #D5D5D5;
-    --background-button: #52B5FB;
-    --link: #52B5FB;
-    --header: #1D6BA5;
-    --logo-header: #FFFFFF;
-    --background-screen: #F2F2F2;
-    --h2: #1D6BA5;
-    --add-icon: #FFFFFF;
-    --background-icon: #52B5FB;
-    --text: #666666;
-    --footer: #FFFFFF;
-    --footer-main: #52B5FB;
-    --background-habit: #FFFFFF;
-    --addHabit-day: #DBDBDB;
-    --text2: #BABABA;
-    --checkbox-not-done: #EBEBEB;
-    --checkbox-done: #8FC549;
-
 }
 
 *{
