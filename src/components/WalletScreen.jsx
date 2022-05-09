@@ -112,7 +112,7 @@ const Section = styledComponents.section`
         display: flex;
         justify-content: space-between;
         width: 326px;
-        margin-bottom: 20px;
+        margin: 10px 0;
         color: white;
 
         .icon{
@@ -121,13 +121,15 @@ const Section = styledComponents.section`
     }
 
     ul{
+        position: relative;
         display: ${({ inputList }) => inputList.length === 0 ? "flex" : ""};
         align-items: center;
         justify-content: center;
         overflow-y: scroll;
+        overflow-x: hidden;
         width: 326px;
         height: 446px;
-        padding: 23px 15px;
+        padding: 23px 15px 0 15px;
         margin-bottom: 13px;
         border-radius: 5px;
         background-color: white;
@@ -136,7 +138,6 @@ const Section = styledComponents.section`
             font-size: 20px;
             text-align: center;
             width: 180px;
-            // margin: auto;
             color: var(--no-input-p);
         }
     }
@@ -152,8 +153,8 @@ const Section = styledComponents.section`
         flex-direction: column;
         font-size: 17px;
         font-weight: bold;
-        width: 31vw;
-        height: 15vh;
+        width: 155px;
+        height: 100px;
         padding: 10px;
         border-radius: 5px;
         border: none;
@@ -185,13 +186,13 @@ const Section = styledComponents.section`
 `
 
 const Total = styledComponents.div`
-    position: fixed;
+    position: sitcky;
     z-index: 1;
-    bottom: 120px;
+    bottom: 0px;
     display: flex;
     justify-content: space-between;
     width: 296px;
-    height: 30px;
+    height: 25px;
     background-color: white;
 
     .total-title{
@@ -199,7 +200,8 @@ const Total = styledComponents.div`
     }
 
     .total-value{
-        right: 100px;
+        position: sticky;
+        right: 0px;
         color: ${({ total }) => total > 0 ? "var(--positive)" : "var(--negative)"};
     }
 `
