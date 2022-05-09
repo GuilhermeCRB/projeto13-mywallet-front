@@ -6,6 +6,8 @@ import styledComponents from "styled-components";
 import UserContext from "../contexts/UserContext";
 import InputTypeContext from "../contexts/InputTypeContext";
 
+import Inputs from "./Inputs";
+
 export default function WalletScreen() {
 
     const { inputType, setInputType } = useContext(InputTypeContext);
@@ -16,12 +18,9 @@ export default function WalletScreen() {
     }
     const [inputList, setInputList] = useState([]);
     const navigate = useNavigate();
-
     let total = 0;
-    inputList?.forEach(input => {
-        const { value } = input;
-        total += parseFloat(value.replace(",", "."));
-    });
+
+    console.log(total)
 
     useEffect(() => {
         const promise = axios.get(URL, config);
@@ -37,9 +36,19 @@ export default function WalletScreen() {
     }
 
     function addInput(type) {
-        console.log(type)
         setInputType(type);
         navigate("/add-input");
+    }
+
+    function updateTotal(total, { value, type }) {
+        if (type === "entrada") {
+            total += parseFloat(value.replace(",", "."));
+        }
+
+        if (type === "saída") {
+            total -= parseFloat(value.replace(",", "."));
+        }
+        return total
     }
 
     return (
@@ -54,19 +63,23 @@ export default function WalletScreen() {
                 {inputList.length === 0 ?
                     <p>Não há registros de entrada ou saída</p>
                     :
-                    inputList.map((input) => {
-                        return (
-                            <li key={input._id} >
-                                <p><span>{input.date}</span> {input.description}</p>
-                                <p>{input.value}</p>
-                            </li>
-                        );
-                    })
+                    <>
+                        {inputList.map((input) => {
+                            total = updateTotal(total, input);
+                            return (
+                                <Inputs
+                                    key={input._id}
+                                    input={input}
+                                    total={total}
+                                />
+                            );
+                        })}
+                        <Total total={total} >
+                            <p className="total-title">SALDO</p>
+                            <p className="total-value">{total.toFixed(2).toString().replace(".", ",").replace("-", "")}</p>
+                        </Total >
+                    </>
                 }
-                <div className="total">
-                    <p className="total-title">SALDO</p>
-                    <p className="total-value">{total.toFixed(2).toString().replace(".", ",")}</p>
-                </div>
             </ul>
             <div className="buttons">
                 <button onClick={() => addInput("entrada")}>
@@ -81,6 +94,7 @@ export default function WalletScreen() {
         </Section>
     );
 }
+
 
 const Section = styledComponents.section`
     display: flex;
@@ -113,35 +127,12 @@ const Section = styledComponents.section`
         border-radius: 5px;
         background-color: white;
 
-        li{
-            font-size: 16px;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-
-            span{
-                margin-right: 2px;
-                color: var(--date);
-            }
-        }
-
-        .total{
-            position: fixed;
-            z-index: 1;
-            bottom: 120px;
-            display: flex;
-            justify-content: space-between;
-            width: 296px;
-            height: 30px;
-            background-color: white;
-        }
-
-        .total-title{
-            font-weight: bold;
-        }
-
-        .total-value{
-            right: 100px;
+        >p{
+            font-size: 20px;
+            text-align: center;
+            width: 180px;
+            margin: auto;
+            color: var(--no-input-p);
         }
     }
 
@@ -185,5 +176,25 @@ const Section = styledComponents.section`
             width: 50%;
             margin-top: 3vh;
         }
+    }
+`
+
+const Total = styledComponents.div`
+    position: fixed;
+    z-index: 1;
+    bottom: 120px;
+    display: flex;
+    justify-content: space-between;
+    width: 296px;
+    height: 30px;
+    background-color: white;
+
+    .total-title{
+        font-weight: bold;
+    }
+
+    .total-value{
+        right: 100px;
+        color: ${({ total }) => total > 0 ? "var(--positive)" : "var(--negative)"};
     }
 `
