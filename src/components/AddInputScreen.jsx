@@ -36,7 +36,7 @@ export default function AddInputScreen() {
             <form onSubmit={postInput}>
                 <input
                     value={input.value}
-                    type="string"
+                    pattern="[0-9]{1,},[0-9]{2}"
                     placeholder="Valor"
                     onChange={(e) => { setInput({ ...input, value: e.target.value }) }}
                     disabled={disable}

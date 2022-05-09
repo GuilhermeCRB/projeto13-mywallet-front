@@ -76,7 +76,9 @@ export default function WalletScreen() {
                         })}
                         <Total total={total} >
                             <p className="total-title">SALDO</p>
-                            <p className="total-value">{total.toFixed(2).toString().replace(".", ",").replace("-", "")}</p>
+                            <p className="total-value">
+                                {total.toFixed(2).toString().replace(".", ",").replace("-", "")}
+                            </p>
                         </Total >
                     </>
                 }
@@ -119,7 +121,7 @@ const Section = styledComponents.section`
     }
 
     ul{
-        display: ${({inputList}) => inputList.length === 0 ? "flex":""};
+        display: ${({ inputList }) => inputList.length === 0 ? "flex" : ""};
         align-items: center;
         justify-content: center;
         overflow-y: scroll;
